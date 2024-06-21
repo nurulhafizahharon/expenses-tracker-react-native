@@ -8,16 +8,18 @@ import {
   StyleSheet,
   Pressable,
   Alert,
+  Image,
 } from "react-native";
 
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Icon from "react-native-vector-icons/FontAwesome";
+import notesIcon from "../assets/icons/notes.png";
+import calendarIcon from "../assets/icons/calendar-outline.png";
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import DataContext from "../DataContext";
-
 
 export default function AddExpenseScreen({ navigation }) {
   const [description, setDescription] = useState("");
@@ -76,7 +78,6 @@ export default function AddExpenseScreen({ navigation }) {
   //   return `${year}-${month}-${day}`;
   // };
 
-  
   const addExpense = async () => {
     const expense = {
       description: description,
@@ -115,6 +116,20 @@ export default function AddExpenseScreen({ navigation }) {
             />
           ))}
         </Picker>
+        <Text
+          style={{
+            flex: 1,
+            textAlign: "right",
+            // alignItems: "center",
+            // justifyContent: "center",
+            color: "white",
+            paddingRight: 10,
+            fontWeight: "bold",
+            fontSize: 24,
+          }}
+        >
+          $
+        </Text>
         <TextInput
           placeholder="0"
           placeholderTextColor="white"
@@ -122,10 +137,10 @@ export default function AddExpenseScreen({ navigation }) {
           onChangeText={(number) => setAmount(number)}
           keyboardType="numeric"
           style={{
-            flex: 3,
+            flex: 2,
             textAlign: "right",
             color: "white",
-            paddingRight: 20,
+            // paddingRight: 20,
             fontWeight: "bold",
             fontSize: 24,
           }}
@@ -133,18 +148,34 @@ export default function AddExpenseScreen({ navigation }) {
       </View>
 
       <View style={styles.description}>
-        <Icon name="sticky-note" size={20} color="#007EA7" />
+        <Image
+          source={notesIcon}
+          style={{
+            width: 20,
+            height: 20,
+            tintColor: "#007EA7",
+          }}
+        />
+        {/* <Icon name="sticky-note" size={20} color="#007EA7" /> */}
         <TextInput
           placeholder="Description"
           value={description}
           onChangeText={(input) => setDescription(input)}
-          style={{fontSize: 16}}
+          style={{ fontSize: 16 }}
         />
       </View>
 
       <View>
         <Pressable style={styles.date} onPress={showDate}>
-          <Icon name="calendar" size={20} color="#007EA7" />
+          <Image
+            source={calendarIcon}
+            style={{
+              width: 20,
+              height: 20,
+              tintColor: "#007EA7",
+            }}
+          />
+          {/* <Icon name="calendar" size={20} color="#007EA7" /> */}
           <Text
             style={{
               fontSize: 16,
@@ -181,6 +212,7 @@ const styles = StyleSheet.create({
     padding: 8,
     paddingLeft: 20,
     paddingRight: 20,
+    alignItems: "center",
   },
   button: {
     backgroundColor: "#003249",
